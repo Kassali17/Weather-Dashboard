@@ -1,0 +1,224 @@
+:root {
+  --ink: #101b2d;
+  --ink-soft: rgba(16, 27, 45, 0.7);
+  --paper: #f5f7fb;
+  --accent-sun: #ffb454;
+  --accent-sky: #4fa8e0;
+  --card-radius: 20px;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--ink);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  transition: background 0.6s ease;
+}
+
+/* Condition-based gradients — the app's signature: the whole screen
+   reflects the weather you searched for, not just a small icon. */
+.gradient-default {
+  background: linear-gradient(160deg, #dfe9f5 0%, #f5f7fb 60%);
+}
+.gradient-clear {
+  background: linear-gradient(160deg, #ffe3a3 0%, #ffb454 45%, #4fa8e0 100%);
+}
+.gradient-clouds {
+  background: linear-gradient(160deg, #c7d2de 0%, #93a5b8 60%, #6c7f94 100%);
+}
+.gradient-rain {
+  background: linear-gradient(160deg, #4a6079 0%, #2f4258 60%, #1c2c3e 100%);
+}
+.gradient-storm {
+  background: linear-gradient(160deg, #2c3446 0%, #1a2030 60%, #0d1119 100%);
+}
+.gradient-snow {
+  background: linear-gradient(160deg, #eef4fa 0%, #cddceb 60%, #a9c1d9 100%);
+}
+.gradient-mist {
+  background: linear-gradient(160deg, #d9dee3 0%, #b7bfc7 60%, #97a1ab 100%);
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  border-radius: var(--card-radius);
+  padding: 36px 32px 32px;
+  box-shadow: 0 20px 60px rgba(16, 27, 45, 0.18);
+  text-align: center;
+}
+
+.title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 27, 45, 0.15);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-input:focus-visible {
+  border-color: var(--accent-sky);
+  box-shadow: 0 0 0 3px rgba(79, 168, 224, 0.25);
+}
+
+.search-button {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--ink);
+  color: white;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.search-button:hover:not(:disabled) {
+  opacity: 0.85;
+}
+.search-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.search-button:focus-visible {
+  outline: 2px solid var(--accent-sky);
+  outline-offset: 2px;
+}
+
+.hint {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.state-block {
+  padding: 24px 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.state-block.error {
+  color: #b3261e;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 12px;
+  border: 3px solid rgba(16, 27, 45, 0.15);
+  border-top-color: var(--accent-sky);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.weather-result {
+  padding-top: 4px;
+}
+
+.weather-icon {
+  font-size: 56px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.temp {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.condition {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-transform: capitalize;
+  margin-top: 2px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(16, 27, 45, 0.1);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.stat-value {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: rgba(16, 27, 45, 0.5);
+}
